@@ -52,4 +52,8 @@ public class Xml
 	      nom=Xml.lire();
 	      return nom;
    }
+public static ArrayList<String> getNom() {
+	return nom;
+}
+
 }
