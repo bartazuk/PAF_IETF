@@ -1,4 +1,4 @@
-package XmlRead;
+package IETF;
 import java.io.*;
 
 import org.jdom2.*;
@@ -11,11 +11,16 @@ import java.util.Iterator;
 
 public class Xml
 {
-   static org.jdom2.Document document;
-   static Element racine;
-   static ArrayList<String> nom = new ArrayList();
+   private static org.jdom2.Document document;
+   private static Element racine;
+   private ArrayList<String> nom ;
    
-   static ArrayList<String> lire()
+   public Xml()
+   {
+	  nom = new ArrayList();
+   }
+   
+   private ArrayList<String> lire()//Methode qui lit un xml et renvoi la liste des noms dedans
    {
       //On crée une List contenant tous les noeuds "liste" de l'Element racine
       List listEtudiants = racine.getChildren("personne");
@@ -33,7 +38,7 @@ public class Xml
       }
       return nom;
    }
-   static ArrayList<String> nom()
+   public ArrayList<String> nom()//Metthode à utiliser, elle utilise le bon xml
    {
 	   SAXBuilder sxb = new SAXBuilder();
 	      ArrayList<String> nom = new ArrayList();
@@ -49,11 +54,10 @@ public class Xml
 	      Xml.racine = Xml.document.getRootElement();
 
 	      //Retourne une arraylist des noms
-	      nom=Xml.lire();
+	      nom=lire();
 	      return nom;
    }
-public static ArrayList<String> getNom() {
-	return nom;
-}
+   
+
 
 }
