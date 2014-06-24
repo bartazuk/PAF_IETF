@@ -38,7 +38,7 @@ public class Xml
       }
       return nom;
    }
-   public ArrayList<String> nom()//Metthode à utiliser, elle utilise le bon xml
+   public ArrayList<String> extraireNom(String fichier)//Metthode à utiliser, elle utilise le bon xml
    {
 	   SAXBuilder sxb = new SAXBuilder();
 	      ArrayList<String> nom = new ArrayList();
@@ -47,11 +47,11 @@ public class Xml
 	      {
 	         //On crée un nouveau document JDOM avec en argument le fichier XML
 	         //Le parsing est terminé ;)
-	         Xml.document = sxb.build(new File("nom.xml"));
+	         document = sxb.build(new File(fichier));
 	      }
 	      catch(Exception e){}
 	      //On initialise un nouvel élément racine avec l'élément racine du document.
-	      Xml.racine = Xml.document.getRootElement();
+	      racine = document.getRootElement();
 
 	      //Retourne une arraylist des noms
 	      nom=lire();
