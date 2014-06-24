@@ -15,12 +15,13 @@ public class Xml
    private static Element racine;
    private ArrayList<String> nom ;
    
-   public Xml()
+   public Xml(String fichier)
    {
-	  nom = new ArrayList();
+	   nom=new ArrayList();
+	  extraireNom(fichier);
    }
    
-   private ArrayList<String> lire()//Methode qui lit un xml et renvoi la liste des noms dedans
+   private void lire()//Methode qui lit un xml et renvoi la liste des noms dedans
    {
       //On crée une List contenant tous les noeuds "liste" de l'Element racine
       List listEtudiants = racine.getChildren("personne");
@@ -34,15 +35,13 @@ public class Xml
          //sélectionner un nœud fils, modifier du texte, etc...
          Element courant = (Element)i.next();
          //On ajoute le nom courant à un arraylist
-         nom.add(courant.getChild("nom").getText());
+         nom.add(courant.getChild("nom").getText());//Permet de gérer un bug
       }
-      return nom;
+
    }
-   public ArrayList<String> extraireNom(String fichier)//Metthode à utiliser, elle utilise le bon xml
+   private void extraireNom(String fichier)//Metthode à utiliser, elle utilise le bon xml
    {
 	   SAXBuilder sxb = new SAXBuilder();
-	      ArrayList<String> nom = new ArrayList();
-	      ArrayList<String> code = new ArrayList();
 	      try
 	      {
 	         //On crée un nouveau document JDOM avec en argument le fichier XML
@@ -54,10 +53,12 @@ public class Xml
 	      racine = document.getRootElement();
 
 	      //Retourne une arraylist des noms
-	      nom=lire();
-	      return nom;
+	      lire();
    }
    
+   public ArrayList<String> getNom(){
+	   return nom;
+   }
 
 
 }
