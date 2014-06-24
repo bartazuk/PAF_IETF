@@ -7,12 +7,15 @@ public class Liste {
 	
 	private ArrayList<String> liste;
 	
-	Liste()
+	Liste(ArrayList<String> article)
 	{
-		liste= new ArrayList();
+		liste=new ArrayList();
+		for (int i=0;i<article.size();i++){
+			add(article.get(i));
+		}
 	}
 	
-	public void add(String url)
+	private void add(String url)
 	{
 		String article="https://datatracker.ietf.org"+url;
 		if (!liste.contains(article))//verifie si l'url est pas déjà dans la liste (si plusieurs membres ont publié le même article)
@@ -21,7 +24,7 @@ public class Liste {
 			liste.add(article);//ajoute l'url à la liste si il n'y est pas déjà
 		}
 	}
-	public ArrayList<String> getUrl()
+	public ArrayList<String> getListe()
 	{
 		
 		return liste;
